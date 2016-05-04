@@ -3,7 +3,7 @@ title: 多个下拉按钮的处理
 
  实现的效果如下
 
-<a href = "/images/MorePullDown/root.gif"> <img src = "/images/MorePullDown/root.gif" width = 360 height = 240 alt = "root.gif"/> </a>
+<a href = "http://qiangxinyu.cn/images/MorePullDown/root.gif"> <img src = "http://qiangxinyu.cn/images/MorePullDown/root.gif" width = 360 height = 240 alt = "root.gif"/> </a>
 
 [项目代码][项目代码]
 
@@ -332,7 +332,7 @@ if (self.oldBtn != btn && self.oldBtn.isShow) {
 
 
 
-<p><font color = #cd4c56> *第一次写这样的博客，写的有点乱，时间也有限，亲们有哪里看不懂的可以留言* </font></p>
+*第一次写这样的博客，写的有点乱，时间也有限，亲们有哪里看不懂的可以留言*
 
 
 
