@@ -15,12 +15,13 @@
 #import "XYButton.h"
 
 @interface ViewController ()
-@property (nonatomic, strong)NSMutableArray * groupArray;
 @property (nonatomic, strong)XYNearDriverSchoolSelectView * selectView;
 
 @property (nonatomic, strong)XYNearDriverSchoolSelectTableView * selectTableView;
 
-
+/**
+ *  上一次点击的 Btn
+ */
 @property (nonatomic, weak)XYButton * oldBtn;
 /**
  *  处于 显示 模式的btn
@@ -46,18 +47,19 @@ static NSString * cell_key = @"cell";
     [self.view addSubview:imageView];
     
     
-    
+    //半透明的 View
     [self.view addSubview:self.selectTableView.backgroudView];
     [self.selectTableView.backgroudView clickView:^(UIView *view) {
         [self.showBtn touchesEnded:[NSSet set] withEvent:nil];
     }];
     
+    //TableView
     [self.view addSubview:self.selectTableView];
 
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    //放4个按钮的 View
     [self.view addSubview:self.selectView];
 
    
@@ -89,10 +91,7 @@ static NSString * cell_key = @"cell";
     if (!_selectView) {
         _selectView = [[XYNearDriverSchoolSelectView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
         
-        
         WeakSelf(weakSelf);
-        
-        
         
         NSMutableArray * groupArray = @[].mutableCopy;
         for (int i = 0 ; i < 4 ; i ++) {
@@ -100,31 +99,22 @@ static NSString * cell_key = @"cell";
             for (int i = 0 ; i < (arc4random()% 40) + 1; i ++) {
                 [array addObject:[NSString stringWithFormat:@"%d",(arc4random()% 40)]];
             }
-            
             [groupArray addObject:array];
         }
         
-        
         [_selectView clickSelectView_blockWithBlock:^(XYButton *btn) {
            
-            
             if (btn.isShow) {
+                NSLog(@" -- %@",btn.titleLabel.text);
                 self.showBtn = btn;
                 self.selectTableView.backgroudView.hidden = NO;
-                NSLog(@" -- %@",btn.titleLabel.text);
-
-                
-                
                 weakSelf.selectTableView.groupArray = groupArray[btn.tag - 100000];
             }
            
-            
             if (self.oldBtn != btn && self.oldBtn.isShow) {
-                
                 [self.oldBtn touchesEnded:[NSSet set] withEvent:nil];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kHomeCityAnimate_time / 2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [weakSelf clickSelectViewWithBth:btn];
-                    
                 });
             } else {
                 [weakSelf clickSelectViewWithBth:btn];
@@ -139,6 +129,9 @@ static NSString * cell_key = @"cell";
 {
     if (!_selectTableView) {
         _selectTableView = [[XYNearDriverSchoolSelectTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
+        /**
+         *  点击cell 的回调
+         */
         [_selectTableView didSelectRowWithBlock:^(XYNearDriverSchoolSelectTableView *tableView, NSIndexPath *indexPath) {
             
         }];

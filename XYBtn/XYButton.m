@@ -37,22 +37,15 @@
 - (void)touchesEnded
 {
     self.isShow = !self.isShow;
-    
     [UIView animateWithDuration:kHomeCityAnimate_time animations:^{
         self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, M_PI);
     }];
 }
 
-
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self touchesEnded];
-    
     self.clickCityBtn_block_xyButton ? self.clickCityBtn_block_xyButton(self) : 0;
-    
-    
-    
-    
 }
 
 #pragma mark -------------------------------------------------------
@@ -64,9 +57,8 @@
     
     CGFloat width = [title boundingRectWithSize:CGSizeMake(222, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:9]} context:nil].size.width;
     
-    if (width > self.width - 12) {
-        width = self.width - 12;
-    }
+    //图片的宽度是12，所以label的宽度不能超过
+    width = (width > self.width - 12) ? (self.width - 12) : width;
     
     self.titleLabel.width = width;
     self.titleLabel.mj_x  = self.width / 2 - (width + 12 + 2) / 2;

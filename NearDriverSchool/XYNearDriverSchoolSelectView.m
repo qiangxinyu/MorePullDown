@@ -20,6 +20,7 @@
 }
 - (void)layoutViews
 {
+    //放一条横线
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
     view.backgroundColor = kDefaultBackgroudColor;
     [self addSubview:view];
@@ -29,9 +30,8 @@
     NSInteger width = (NSInteger)((self.width - 3) / 4);
     NSArray * titleArray = @[@"默认排序", @"价格", @"距离", @"报名人数"];
     WeakSelf(weakSelf);
-
     
-    for (int i = 0 ; i < 4 ; i ++) {
+    for (int i = 0 ; i < titleArray.count ; i ++) {
         XYButton * btn = [[XYButton alloc] initWithFrame:CGRectMake((width + 1) * i, 1, width, self.height - 1)];
         [btn setTitle:titleArray[i]];
         
