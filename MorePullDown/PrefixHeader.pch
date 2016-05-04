@@ -1,0 +1,65 @@
+//
+//  PrefixHeader.pch
+//  zhongKe_CRM
+//
+//  Created by apple on 15/10/26.
+//  Copyright © 2015年 apple. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#ifdef __OBJC__
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Color.h"
+#import "Time.h"
+#import "UIView+MJExtension.h"
+#import "UIView+YYAdd.h"
+
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define kNotificationCenter [NSNotificationCenter defaultCenter]
+#define kUserD [NSUserDefaults standardUserDefaults]
+#define kWindow [UIApplication sharedApplication].keyWindow
+#define WeakSelf(weakSelf) __weak __typeof(&*self)weakSelf = self;
+
+
+#define iOS7 (kSystemVersion > 7.0 ? YES : NO)
+#define iOS8 (kSystemVersion > 8.0 ? YES : NO)
+#define iOS9 (kSystemVersion > 9.0 ? YES : NO)
+
+#define kNavigationBar_Height 64
+
+/**
+ *  给 计算出来的Szie 取整
+ *
+ *  @param size
+ *
+ */
+#define kGetIntSize(size) CGSizeMake((int)(size.width) + 1, (int)(size.height) + 1)
+#define kGetIntRect(frame) CGRectMake((int)(frame.origin.x) + 1, (int)(frame.origin.y) + 1, (int)(frame.size.width) + 1, (int)(frame.size.height) + 1)
+
+
+#ifdef DEBUG
+#define NSLog(format, ...) do {                                                                         \
+fprintf(stderr, "---------------------------------------------------------------------------------\n%s -> %d ---->>>>> %s\n",                                  \
+[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+__LINE__, __func__);                                                        \
+(NSLog)((format), ##__VA_ARGS__);                                           \
+fprintf(stderr, " ");                           \
+} while (0)
+#else
+#define NSLog(...)
+#endif
+
+
+
+#define kImage(imageName) [UIImage imageNamed:(imageName)]
+
+
+
+#endif
+#endif /* PrefixHeader_pch */
