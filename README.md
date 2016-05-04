@@ -5,7 +5,6 @@ title: 多个下拉按钮的处理
 
 <a href = "http://qiangxinyu.cn/images/MorePullDown/root.gif"> <img src = "http://qiangxinyu.cn/images/MorePullDown/root.gif" width = 360 height = 240 alt = "root.gif"/> </a>
 
-[项目代码][项目代码]
 
 页面很简单，4个按钮、一张图片、一个 `TableView` 和一个半透明 `View`。
 
@@ -335,8 +334,3 @@ if (self.oldBtn != btn && self.oldBtn.isShow) {
 *第一次写这样的博客，写的有点乱，时间也有限，亲们有哪里看不懂的可以留言*
 
 
-
-
-
-
-[项目代码]: https://github.com/qiangxinyu/MorePullDown
